@@ -1,48 +1,82 @@
 console.log("working js file");
 $(document).ready(() => {
 	const myAPI = "";
-	//SET DOM ELEMENTS FOR USER TO INTERACT WITH
-	const writeDOM = () => {
-
+	let forecastWeather = [];
+	let currentWeather = [];
+	
+	const writeForecastWeatherDOM = (forecastArray, id) => {
+		$("#forecast").html("");
+		let foreCastWeatherString = "";
+		for (let i = 0; i < parseInt(id); i++) {
+			foreCastWeatherString += `<div class="col-sm-4">`;
+			foreCastWeatherString += `<p>${forecastArray[i].main.temp_max}</p>`;
+			foreCastWeatherString += `<p>${forecastArray[i].weather[0].main}</p>`;
+			foreCastWeatherString += `<p>${forecastArray[i].weather[0].description}</p>`;
+			foreCastWeatherString += `<p>${forecastArray[i].main.pressure}</p>`;
+			foreCastWeatherString += `<p>${forecastArray[i].wind.speed}</p>`;
+			foreCastWeatherString += `</div>`;
+		}
+		$("#forecast").append(foreCastWeatherString);
+		if (parseInt(id) === 3) {
+			console.log("passing if");
+			$("#forecast").append(`<button class="sevenDay" id="7">SEE FULL WEEK FORECAST</button>`);
+			fullWeekClick();
+		}
 	};
+
+
+	const writeCurrentWeatherDOM = (currentWeatherArray) => {
+		let currentWeatherString = "";
+		currentWeatherString += `<div class="row"><div class="container" id="currentWeather">`;
+		currentWeatherString += `<p>Temp: ${currentWeatherArray.temp}</p>`;
+		currentWeatherString += `<p>Current Weather: ${currentWeatherArray.weather}</p>`;
+		currentWeatherString += `<p>Description: ${currentWeatherArray.description}</p>`;
+		currentWeatherString += `<p>Pressure: ${currentWeatherArray.pressure}</p>`;
+		currentWeatherString += `<p>Wind Speed: ${currentWeatherArray.wind}mph</p>`;
+		currentWeatherString += ``;
+		currentWeatherString += ``;
+		currentWeatherString += `</div></div>`;
+		$(".currentWeather").html(currentWeatherString);
+	};
+
 	const moreClick = () => {
-		$(".moreDays").on("click", () => {
+		$(".threeDay").on("click", (e) => {
+			$(".threeDay").hide();
+			let id = e.target.id;
 			const zipcode = $("#userZipcode").val();
-			console.log("click working", zipcode);
 			loadForecastWeather(zipcode).then((weatherResults) => {
-				getForecastWeatherInfo(weatherResults.list);
+				getForecastWeatherInfo(weatherResults.list, id);
 			}).catch((dataFail) => {
-				const failMessage = dataFail.responseJSON.message;
-				$("#results").html("");
-				$("#results").html(failMessage);
+				console.log(dataFail)
 			});
 		});
-	}
+	};
+	const fullWeekClick = () => {
+		$(".sevenDay").on("click", () => {
+			let id = $(".sevenDay")[0].id;
+			writeForecastWeatherDOM(forecastWeather, id);
+		});
+	};
 
 	const getCurrentWeatherInfo = (currentWeatherResults) => {
-		console.log("current temp: ", currentWeatherResults.main.temp);
-		console.log("current pressure: ", currentWeatherResults.main.pressure);
-		console.log("current conditions: ", currentWeatherResults.weather[0].main);
-		console.log("current conditions description: ", currentWeatherResults.weather[0].description);
-		console.log("wind speed in mph", currentWeatherResults.wind.speed);
-		console.log("add a 3 day and 7 day forecast button");
-		$("#currentWeather").html(`<button class="moreDays">MORE DAYS</button>`);
+		currentWeather.temp = currentWeatherResults.main.temp;
+		currentWeather.pressure = currentWeatherResults.main.pressure;
+		currentWeather.weather = currentWeatherResults.weather[0].main;
+		currentWeather.description = currentWeatherResults.weather[0].description;
+		currentWeather.wind = currentWeatherResults.wind.speed;
+
+		writeCurrentWeatherDOM(currentWeather);
+		$("#currentWeather").append(`<button class="threeDay" id="3">THREE DAY FORECAST</button>`);
 		moreClick();
 
 	};
 
-	const getForecastWeatherInfo = (dataResults) => {
+	const getForecastWeatherInfo = (dataResults, id) => {
 		//put an if statement to check id (3 days or 7 days);
-		let fullForecast = dataResults;
-		let currentWeather = [];
-		let threeDayForecast = [];
-		console.log("date", dataResults[0].dt_txt);
-		console.log("max temp", dataResults[0].main.temp_max);
-		console.log("min temp", dataResults[0].main.temp_min);
-		console.log("conditions", dataResults[0].weather[0].main);
-		console.log("condition details", dataResults[0].weather[0].description);
-		console.log("pressure", dataResults[0].main.pressure);
-		console.log("wind speed in mph", dataResults[0].wind.speed);
+		for (let x = 0; x < 7; x++) {
+			forecastWeather.push(dataResults[x]);
+		}
+		writeForecastWeatherDOM(forecastWeather, id);
 	};
 
 	const loadCurrentWeather = (userInput) => {
@@ -79,30 +113,6 @@ $(document).ready(() => {
 	});
 
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
