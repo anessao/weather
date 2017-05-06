@@ -6,20 +6,30 @@
 	<link rel="stylesheet" type="text/css" href="./styles/main.css">
 </head>
 <body>
-	<h1>WORKING FILES</h1>
-	<div class="container" id="mainBody">
-			<input type="text" placeholder="Enter a zipcode!" pattern="\d*" maxlength="5" id="userZipcode"></textarea>
-			<input id="submit-btn" type="submit" value="Get My Weather!">
-
-		<div class="container col-md-12" id="results">
-			<div id="currentWeather" class="currentWeather">
-				
-			</div>
-			<div id="forecast" class="forecast">
-				
+	<div class="breaker bkg-blue">
+	<span>Count Cloud Weather App</span>
+	</div>
+	<div class="breaker bkg-gray"><span></span></div>
+	<div class="jumbotron bkg-red" id="forecastBody">
+		<div class="container">
+			<div class="inputContainer bkg-gray">
+				<input type="text" placeholder="Enter a zipcode!" pattern="\d*" maxlength="5" id="userZipcode"></textarea>
+				<input class="currentWeatherBtn" id="submit-btn" type="submit" value="Get My Weather!">
 			</div>
 		</div>
-		
+	</div>
+	<div class="breaker bkg-white"><span></span></div>
+	<div class="bkg-purple">
+		<div class="container bkg-blue currentWeatherTitle">
+			<span>Your Current Weather is:</span>	
+		</div>
+	</div>
+	<div class="container col-md-12" id="results">
+		<div id="currentWeather" class="currentWeather bkg-light">
+			
+		</div>
+		<div id="forecast" class="forecast">
+		</div>
 	</div>
 
 	<script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.js"></script>

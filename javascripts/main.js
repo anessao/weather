@@ -9,12 +9,13 @@ $(document).ready(() => {
 		let foreCastWeatherString = "";
 		for (let i = 0; i < parseInt(id); i++) {
 			foreCastWeatherString += `<div class="col-sm-4">`;
-			foreCastWeatherString += `<p>${forecastArray[i].main.temp_max}</p>`;
+			foreCastWeatherString += `<h4 class="bkg-red locationTitle">LOCATION AND DATE</h3>`;
+			foreCastWeatherString += `<div class="container"><p>${forecastArray[i].main.temp_max}</p>`;
 			foreCastWeatherString += `<p>${forecastArray[i].weather[0].main}</p>`;
 			foreCastWeatherString += `<p>${forecastArray[i].weather[0].description}</p>`;
 			foreCastWeatherString += `<p>${forecastArray[i].main.pressure}</p>`;
 			foreCastWeatherString += `<p>${forecastArray[i].wind.speed}</p>`;
-			foreCastWeatherString += `</div>`;
+			foreCastWeatherString += `</div></div>`;
 		}
 		$("#forecast").append(foreCastWeatherString);
 		if (parseInt(id) === 3) {
@@ -27,7 +28,7 @@ $(document).ready(() => {
 
 	const writeCurrentWeatherDOM = (currentWeatherArray) => {
 		let currentWeatherString = "";
-		currentWeatherString += `<div class="row"><div class="container" id="currentWeather">`;
+		currentWeatherString += `<div class="row"><div class="container">`;
 		currentWeatherString += `<p>Temp: ${currentWeatherArray.temp}</p>`;
 		currentWeatherString += `<p>Current Weather: ${currentWeatherArray.weather}</p>`;
 		currentWeatherString += `<p>Description: ${currentWeatherArray.description}</p>`;
@@ -47,7 +48,7 @@ $(document).ready(() => {
 			loadForecastWeather(zipcode).then((weatherResults) => {
 				getForecastWeatherInfo(weatherResults.list, id);
 			}).catch((dataFail) => {
-				console.log(dataFail)
+				console.log(dataFail);
 			});
 		});
 	};

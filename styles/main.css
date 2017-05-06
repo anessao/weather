@@ -1,1 +1,74 @@
 /*THIS WORKS*/
+.breaker {
+  height: 100%;
+  padding: 10px; }
+  .breaker span {
+    color: white; }
+
+.jumbotron {
+  margin-bottom: 0px; }
+
+.currentWeatherTitle {
+  padding-left: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 100px; }
+  .currentWeatherTitle span {
+    font-size: 2.5rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white; }
+
+.currentWeatherBtn {
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 200px;
+  color: white;
+  background-color: #29afff; }
+
+.col-sm-4 {
+  padding: 0px;
+  margin: 10px;
+  width: 30%;
+  border: 3px solid #ff5a41; }
+  .col-sm-4 .locationTitle {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 5px;
+    heigth: 100px; }
+
+#userZipcode {
+  width: 300px;
+  height: 40px;
+  padding-left: 15px;
+  border: 0px;
+  border-radius: 300px;
+  outline: none; }
+
+.inputContainer {
+  width: 450px;
+  padding: 10px;
+  border-radius: 200px; }
+
+#results .currentWeather {
+  padding-left: 100px;
+  width: 100%;
+  margin-right: -200px; }
+
+.bkg-blue {
+  background-color: #29afff; }
+
+.bkg-white {
+  background-color: white; }
+
+.bkg-red {
+  background-color: #ff5a41; }
+
+.bkg-gray {
+  background-color: #464545; }
+
+.bkg-light {
+  background-color: #ececed; }
+
+.bkg-purple {
+  background-color: #8f1ae8; }
