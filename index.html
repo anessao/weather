@@ -12,9 +12,16 @@
 	<div class="breaker bkg-gray"><span></span></div>
 	<div class="jumbotron bkg-red" id="forecastBody">
 		<div class="container">
-			<div class="inputContainer bkg-gray">
+			<div class="inputContainer bkg-gray hide">
 				<input type="text" placeholder="Enter a zipcode!" pattern="\d*" maxlength="5" id="userZipcode"></textarea>
 				<input class="currentWeatherBtn" id="submit-btn" type="submit" value="Get My Weather!">
+			</div>
+			<div class="signInContainer bkg-gray">
+				<input class="input" type="email" placeholder="email" id="userEmail"></textarea>
+				<input class="input" type="password" placeholder="password" id="userPassword"></textarea>
+				<input class="input" type="text" placeholder="username" id="userName"></textarea>
+				<input class="currentWeatherBtn" id="register" type="submit" value="REGISTER">
+				<input class="currentWeatherBtn" id="login" type="submit" value="LOGIN">
 			</div>
 		</div>
 	</div>
@@ -31,9 +38,14 @@
 		<div id="forecast" class="forecast">
 		</div>
 	</div>
-
+	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 	<script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="./javascripts/firebase.js"></script>
+    <script type="text/javascript" src="./javascripts/userCrud.js"></script>
+    <script type="text/javascript" src="./javascripts/auth.js"></script>
+    <script type="text/javascript" src="./javascripts/crud.js"></script>
+    <script type="text/javascript" src="./javascripts/dom.js"></script>
 	<script type="text/javascript" src="./javascripts/main.js"></script>
 </body>
 </html>

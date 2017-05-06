@@ -1,8 +1,19 @@
 console.log("working js file");
 $(document).ready(() => {
-	const myAPI = "";
+	let apiKeys;
+	let myAPI = "";
 	let forecastWeather = [];
 	let currentWeather = [];
+
+
+	//FIREBASE INITIALIZING
+	weatherAPI.firebaseCredentials().then((firebaseKeys) => {
+		apiKeys = firebaseKeys;
+		firebase.initializeApp(apiKeys);
+		// FbAPI.writeDom(apiKeys);
+	}).catch((error) => {
+		console.log("key errors", error);
+	});
 	
 	const writeForecastWeatherDOM = (forecastArray, id) => {
 		$("#forecast").html("");
@@ -113,6 +124,54 @@ $(document).ready(() => {
 		});
 	});
 
+	//REGISTER AND LOGIN ACTIONS
+
+	$("#register").click(() => {
+		let email = $("#userEmail").val();
+		let password = $("#userPassword").val();
+		let username = $("#userName").val();
+
+		let user = {email, password};
+		weatherAPI.registerUser(user).then((response) => {
+			let newUser = {
+				uid: response.uid,
+				username: username
+			};
+
+			weatherAPI.addUser(apiKeys, newUser).then((response) => {
+				weatherAPI.loginUser(user).then((response) => {
+					// clearLogin();
+					$(".signInContainer").addClass("hide");
+					$(".inputContainer").removeClass("hide");
+					// FbAPI.writeDom(apiKeys);
+				}).catch((error) => {
+					console.log("login error: ", error);
+				});
+			}).catch((newUserError) => {
+				console.log("add user error: ", newUserError);
+			});
+		}).catch((error) => {
+			console.log("register user error: ", error);
+		});
+	});
+
+	$("#login").click(() => {
+		let email = $("#userEmail").val();
+		let password = $("#userPassword").val();
+		console.log("login working");
+
+		let user = {email, password};
+		weatherAPI.loginUser(user).then((response) => {
+			// clearLogin();
+			$(".signInContainer").addClass("hide");
+			$(".inputContainer").removeClass("hide");
+			console.log("dom, loginUser", response);
+			// FbAPI.writeDom(apiKeys);
+			// FbAPI.writeDomLogoutBtn(apiKeys);
+		}).catch((error) => {
+			console.log("login error: ", error);
+		});
+	});
 	
 
 

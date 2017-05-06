@@ -26,6 +26,19 @@
   color: white;
   background-color: #29afff; }
 
+.signInContainer {
+  width: 773px;
+  padding: 10px;
+  border-radius: 200px; }
+
+.input {
+  width: 200px;
+  height: 40px;
+  padding-left: 15px;
+  border: 0px;
+  border-radius: 300px;
+  outline: none; }
+
 .col-sm-4 {
   padding: 0px;
   margin: 10px;
